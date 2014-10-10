@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>jQuery Demos</title>
+    <style>
+        .gosho{
+            background-color: red;
+        }
+    </style>
 </head>
 <body id="body">
 <ul>
@@ -27,20 +32,23 @@
 <script src="jquery.min.js"></script>
 
 <script>
+    var $message = $('.message');
+
     function printMessage(text){
         var $messages = $('.messages');
         $messages.append('<div class="messages">' + text + '</div>');
 
     }
-    printMessage('Message-1');
-    printMessage('Message-2');
 
-    $('<ul><li>' + 1 + '</li><li>' + 2 + '</li><li>' + 3 + '</li></ul>')
-            .appendTo(document.body);
-
-    setTimeout( function(){
-        $('li:odd').remove();
-    }, 1500);
+    var hasBorder = true;
+    function fadeIn(){
+        var $item = $('li');
+        $item.fadeIn(2000, fadeOut);
+    }function fadeOut(){
+        var $item = $('li');
+        $item.fadeOut(2000, fadeIn);
+    }
+    fadeOut();
 </script>
 </body>
 </html>
