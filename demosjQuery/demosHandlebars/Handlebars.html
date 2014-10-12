@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Handlebars.js Demos</title>
+</head>
+<body>
+
+<script id="articles-template"
+        type="text/x-handlebars-template">
+    <section>
+        {{#articles}}
+        <article id="article-{{id}}" class="article">
+            <h1>{{title}}</h1>
+            <p>{{content}}</p>
+        </article>
+        {{#else}}
+        <h1>No articles</h1>
+        {{/articles}}
+    </section>
+</scropt>
+<script src="handlebars.min.js"></script>
+<script>
+
+var templateNode =
+        document.getElementById('articles-template');
+var templateString = templateNode.innerHTML;
+var template = Handlebars.compile(templateString);
+var article = [{
+    id:1,
+    title:'Article Title #1',
+    content:'One Loren ipsum',
+    postDate:'12.06.2014'
+    },{
+    id:2,
+    title:'Article Title #2',
+    content:'Two Loren ipsum'
+    },{
+    id:3,
+    title:'Article Title #3',
+    content:'Three Loren <h1>ipsum</h1>apsum',
+    postDate:'13.06.2014'
+}];
+
+    var articleHTML = template({
+        articles: []
+    });
+    document.doby.innerHTML = articleHTML;
+</script>
+
+</body>
+</html>

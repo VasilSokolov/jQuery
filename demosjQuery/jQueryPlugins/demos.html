@@ -16,8 +16,26 @@
 </head>
 <body>
 <div class="box"></div>
+<div class="box"></div>
 <script>
-$fn.zoomable = function(){
+    $.fn.zoomable = function(){
+        $this = $(this.selector);
+
+        $this.on('mouseover', function(ev){
+            var $this = $(this),
+                width = $this.width(),
+                height = $this.height();
+            $this.width(width*2);
+            $this.height(height*2);
+        });
+        $this.on('mouseout', function(ev){
+            var $this = $(this),
+                width = $this.width(),
+                    height = $this.height();
+            $this.width(width/2);
+            $this.height(height/2);
+        });
+        return $this;
 
 };
     $('.box').zoomable();

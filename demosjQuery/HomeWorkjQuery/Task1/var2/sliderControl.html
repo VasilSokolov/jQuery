@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>01.Slider Control</title>
+    <script src='scripts/jquery.min.js'></script>
+    <script src='scripts/handlebars.min.js'></script>
+    <script src='data/slider-data.js'></script>
+    <style>
+        img {
+            width: 200px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+<div id="slider"></div>
+<button id="btn-prev">Previous</button>
+<button id="btn-next">Next</button>
+<button id="btn-slide">Slideshow</button>
+<script type="text/x-handlebars-template" id="slider-template">
+    {{#slides}}
+    <div class="slide">
+        <img alt="{{alt}}" src="{{src}}">
+    </div>
+    {{/slides}}
+</script>
+<script>
+    (function () {
+        var timeoutID = false;
+        var template = Handlebars.compile($('#slider-template').html());
+        $('#slider').html(template({slides: images()}));
+        $('.slide').hide();
+        $('.slide').first().addClass('current').show();
+        $.fn.nextOrFirst = function () {
+            var next = this.next();
+            return (next.length) ? next : this.prevAll().last();
+        };
+        $.fn.prevOrLast = function () {
+            var prev = this.prev();
+            return (prev.length) ? prev : this.nextAll().last();
+        };
+        var showNext = function () {
+            $('.current').removeClass('current').hide().nextOrFirst().addClass('current').show();
+        };
+        var showPrev = function () {
+            $('.current').removeClass('current').hide().prevOrLast().addClass('current').show();
+        };
+        var slideShow = function () {
+            showNext();
+            timeoutID = setTimeout(slideShow, 2000);
+        }
+        $('#btn-next').click(showNext);
+        $('#btn-prev').click(showPrev);
+        $('#btn-slide').click(function () {
+            if (timeoutID) {
+                clearTimeout(timeoutID);
+                timeoutID = false;
+            } else {
+                slideShow();
+            }
+        });
+    })();
+</script>
+</body>
+</html>
