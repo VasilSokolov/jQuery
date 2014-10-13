@@ -1,3 +1,1 @@
-/**
- * Created by 123 on 10/13/14.
- */
+$('<button>').text('Test').on('click', testFunctionality).appendTo('body');
