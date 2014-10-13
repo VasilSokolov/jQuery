@@ -3,17 +3,26 @@
 <head>
     <title>03. GenerateTable</title>
     <style>
-        table, td, th{
-            border: 1px solid black;
-            border-collapse: collapse;
+        td, th{
+            border: 1px solid red;
+            padding: 5px;
         }
 
-        td, th{
-            padding: 5px;
+        thead{
+            background-color: paleturquoise;
+            color: purple;
+        }
+
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
         }
     </style>
 </head>
 <body>
+
+<div id="root"></div>
+<button id="createTable">Create Table</button>
 
 <script src="scripts/jquery.min.js"></script>
 <script src="scripts/tastArray.js"></script>
