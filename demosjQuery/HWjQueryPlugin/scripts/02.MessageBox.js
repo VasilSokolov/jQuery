@@ -31,6 +31,7 @@
 }($));
 
 var msgBox = $('#message-box').messageBox();
+
 $('#error-btn').on('click', function (){
     msgBox.error('ERROR', 'red')
 });
